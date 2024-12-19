@@ -1,0 +1,19 @@
+-- SELECT d.name AS Department, e.name AS Employee, e.salary AS Salary
+-- FROM Employee e
+-- JOIN Department d ON e.departmentId = d.id
+-- WHERE (e.salary, e.departmentId) IN (
+--     SELECT MAX(salary), departmentId
+--     FROM Employee
+--     GROUP BY departmentId
+-- );
+
+with cte1 as(
+    SELECT d.name AS Department, e.name AS Employee, e.salary AS Salary,
+    rank() over(partition by e.departmentId order by e.salary desc) rnk
+    FROM Employee e
+    JOIN Department d ON e.departmentId = d.id
+)
+
+select Department, Employee, Salary
+from cte1
+where rnk = 1;
