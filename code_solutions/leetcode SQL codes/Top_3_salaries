@@ -1,0 +1,27 @@
+-- WITH RankedSalaries AS (
+--     SELECT departmentId, 
+--            salary,
+--            ROW_NUMBER() OVER (PARTITION BY departmentId ORDER BY salary DESC) AS salary_rank
+--     FROM (SELECT DISTINCT departmentId, salary FROM Employee) AS distinct_salaries
+-- )
+ 
+-- SELECT d.name AS department, e.name AS employee, e.salary
+-- FROM Employee e
+-- JOIN Department d 
+--   ON e.departmentId = d.id
+-- JOIN RankedSalaries rs
+--   ON e.departmentId = rs.departmentId AND e.salary = rs.salary
+-- WHERE rs.salary_rank <= 3
+-- ORDER BY e.departmentId, e.salary DESC;
+
+with cte1 as (
+    select d.name as Department, e.name as Employee, e.salary as Salary, dense_rank() over (partition by d.id
+    order by e.salary desc) as rnk
+    from Employee e
+    join Department d
+    on e.departmentId = d.id
+)
+
+select Department , Employee, Salary
+from cte1
+where rnk<4
