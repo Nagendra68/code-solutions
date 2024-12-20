@@ -1,5 +1,5 @@
 class Solution:
-    def minJumps(self, arr):
+    def min_jumps(self, arr):
         n = len(arr)
         
         # Edge cases
