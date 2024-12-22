@@ -13,9 +13,9 @@ class Solution:
         dictt = {}
         for i in range(1, n+1):
             dictt[i] = num[i-1]
-        swapped_dict = {v: k for k, v in dictt.items()}
-        sorted_dict = {k: swapped_dict[k] for k in sorted(swapped_dict)}
-        new = list(sorted_dict.values())
+        swapped_dict = {v:k for k, v in dictt.items()}
+        sorted_dictt = {k:swapped_dict[k] for k in sorted(swapped_dict)}
+        new = list(sorted_dictt.values())
         new2 = " ".join(map(str, new))
         
         return new2
