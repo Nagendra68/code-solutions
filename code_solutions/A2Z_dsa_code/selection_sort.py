@@ -2,7 +2,7 @@ class Solution:
     def selection_sort(self, arr):
         n = len(arr)
 
-        for i in range(n):
+        for i in range(n-1):
             min_index = i
             for j in range(i+1, n):
                 if arr[j]<arr[min_index]:
