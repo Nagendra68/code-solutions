@@ -6,20 +6,20 @@ class Answer:
         pass
 
     def decrypt_repeating_cipher(self,n, t):
-        s = []  # To store the decrypted string
-        index = 0  # Start from the first character
-        step = 1  # Step size for triangular skipping
+        index = 0
+        word = []
+        step = 1
+        while(index<n):
+            word.append(t[index])
+            index+=step
+            step+=1
 
-        while index < n:
-            s.append(t[index])  # Append the character at the current index
-            index += step  # Move to the next index based on the current step
-            step += 1  # Increment the step size
+        print(''.join(word))
 
-        print(''.join(s))  # Convert list to string and output
 
 # Input
-n = int(input("Enter the length of the encrypted string: "))
-t = input("Enter the encrypted string: ").strip()
+n = int(input())
+t = input().strip()
 
 # Solve
 sol = Answer()
