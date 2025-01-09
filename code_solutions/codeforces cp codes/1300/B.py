@@ -1,12 +1,28 @@
-def solve():
-    t = int(input())  # Number of test cases
-    for _ in range(t):
-        n = int(input())  # Number of students halved
-        a = list(map(int, input().split()))  # Skill levels of students
-        
-        a.sort()  # Sort the skill levels
-        
-        # The minimum possible absolute difference is between the n-th and (n-1)-th element
-        print(abs(a[n] - a[n-1]))
+class Solution:
+    def ATC(self):  
+        # Number of test cases
+        t = int(input())  
+        final = []
 
-solve()
+        # Process each test case
+        for _ in range(t):
+            # Input: n (half the total number of students)
+            n = int(input())
+            # Input: skill levels of 2n students
+            skills = list(map(int, input().split()))
+            
+            # Step 1: Sort the skill levels
+            skills.sort()
+
+            # Step 2: Find the minimum difference between the two middle elements
+            # Median of the first class is skills[n - 1], median of the second class is skills[n]
+            result = abs(skills[n] - skills[n - 1])
+            
+            # Output the result
+            final.append(result)
+
+        for i in final:
+            print(i)
+
+sol = Solution()
+sol.ATC()
