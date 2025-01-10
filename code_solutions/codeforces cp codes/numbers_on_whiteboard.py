@@ -1,31 +1,28 @@
-import math
-
-class Solution:
-    def numbers_on_whiteboard(self):
-        t = int(input())
-        results = []
-
-        for _ in range(t):
-            n = int(input())
-
-            # Output the minimum possible number left
-            results.append(str(2))
-
-            # Generate the sequence of pairs
-            pairs = []
-            for i in range(n, 1, -1):
-                pairs.append((i, i - 1))
-
-            # Append pairs to the results
-            results.extend(f"{a} {b}" for a, b in pairs)
-
-        # Print all results
-        print("\n".join(results))
+def solve():
+    t = int(input())  # Number of test cases
+    results = []
+    
+    for _ in range(t):
+        n = int(input())
+        
+        # Store operations
+        operations = []
+        
+        # Initial numbers on the board: 1 to n
+        current = n
+        for i in range(n - 1, 0, -1):
+            operations.append((current, i))
+            current = (current + i + 1) // 2  # Equivalent to math.ceil((current + i) / 2)
+        
+        # Add results to output
+        results.append(str(current))
+        results.extend(f"{a} {b}" for a, b in operations)
+    
+    # Print all results at once
+    print("\n".join(results))
 
 # Example usage
-sol = Solution()
-sol.numbers_on_whiteboard()
-
+solve()
 
 
 
