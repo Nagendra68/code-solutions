@@ -5,15 +5,15 @@ counts are divisible by `k`, construct a substring by repeating each character `
 times and then repeat this substring `k` times to form the final string. """
 
 def construct_string(s,k):
-    count = {}
+    cnt = {}
     for char in s:
-        count[char] = count.get(char,0) + 1
-    for char in count:
-        if count[char] % k != 0:
+        cnt[char] = cnt.get(char,0) + 1
+    for char in cnt:
+        if cnt[char] % k != 0:
             return -1
     result = ""
-    for char in count:
-        result += char * (count[char] // k)
+    for char in cnt:
+        result += char * (cnt[char] // k)
     return result * k
 
 k = int(input())
