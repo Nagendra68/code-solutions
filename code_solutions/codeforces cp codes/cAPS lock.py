@@ -1,17 +1,20 @@
-def process_word(word):
-    # Check if all characters are uppercase
-    if word.isupper():
-        return word.lower()
-    
-    # Check if only the first character is lowercase and rest are uppercase
-    if len(word) > 1 and word[0].islower() and word[1:].isupper():
-        return word.capitalize()  # Capitalize changes first letter to uppercase and others to lowercase
-    
-    return word
+def main():
+    s = input().strip()
 
-# Input reading
-input_word = input().strip()
-result = process_word(input_word)
-print(result)
+    all_upper = True
 
+    # Check if all characters except the first are uppercase
+    for i in range(1, len(s)):
+        if not s[i].isupper():
+            all_upper = False
+            break
+
+    # If all characters except the first are uppercase or string size is 1
+    if all_upper or len(s) == 1:
+        s = s[0].swapcase() + s[1:].lower()
+
+    print(s)
+
+if __name__ == "__main__":
+    main()
 
