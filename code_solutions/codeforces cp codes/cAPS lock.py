@@ -7,7 +7,6 @@ def process_word(word):
     if len(word) > 1 and word[0].islower() and word[1:].isupper():
         return word.capitalize()  # Capitalize changes first letter to uppercase and others to lowercase
     
-    # If none of the conditions are met, return the word unchanged
     return word
 
 # Input reading
