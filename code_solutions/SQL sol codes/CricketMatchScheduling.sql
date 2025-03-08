@@ -1,28 +1,25 @@
-with RankedTeams as (
-
-    select team_name,
-    row_number() over(order by team_name) as row_num
-    from teams
+WITH RankedTeams as (
+    select
+        team_name,
+        row_number() over(order by team_name) as rn
+    from 
+        teams
 ),
-MatchSchedule as (
-    select 
-        row_number() over (order by t1.row_num, t2.row_num) as match_id,
-        t1.team_name as home_team,
-        t2.team_name as away_team
-    from
-        RankedTeams t1
-        join RankedTeams t2 on t1.row_num < t2.row_num
-    
+MatchSchedule as(
+    SELECT
+        ROW_NUMBER() OVER (ORDER BY t1.rn, t2.rn) AS match_id,
+        t1.team_name AS home_team,
+        t2.team_name AS away_team
+    FROM RankedTeams t1 
+    JOIN RankedTeams t2 ON t1.rn < t2.rn
+
     union all
 
-    select 
-        row_number() over (order by t1.row_num, t2.row_num) + 28 as match_id,
-        t2.team_name as home_team,
-        t1.team_name as away_team
-    from
-        RankedTeams t1
-        join RankedTeams t2 on t1.row_num < t2.row_num
-
-)
-
-select * from MatchSchedule;
+        SELECT
+        ROW_NUMBER() OVER (ORDER BY t1.rn, t2.rn) + 28 AS match_id,
+        t2.team_name AS home_team,
+        t1.team_name AS away_team
+    FROM RankedTeams t1 
+    JOIN RankedTeams t2 ON t1.rn < t2.rn
+)   
+select * from MatchSchedule
