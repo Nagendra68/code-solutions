@@ -29,4 +29,4 @@ class Solution:
 arr = [64, 34, 25, 12, 22, 11, 90]
 sol = Solution()
 sorted_arr = sol.selection_sort1(arr)
-print("Sorted Array:", sorted_arr)
+print("Sorted Array:", sorted_arr )
