@@ -9,4 +9,7 @@ class Solution:
                     cnt+=1
         return cnt
         
-        
+obj = Solution()
+a = int(input("Enter a Number: "))
+ans = obj.evenlyDivides(a)
+print(ans)
